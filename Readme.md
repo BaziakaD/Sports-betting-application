@@ -21,8 +21,12 @@ This project targets Java 11. Make sure you have done following:
 Java 11
 - Deploy MySQL server or MySQL proxy to the localhost:3306
 
+### REST API request collections
+```
+https://www.getpostman.com/collections/df21fa2b28d0e534456d
+```
 
-# Users
+### Users
   - User (email@mail.com, 12345678)
 
 ### Installation
