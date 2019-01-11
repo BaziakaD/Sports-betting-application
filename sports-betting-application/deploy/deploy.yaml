@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sba-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sba-server
+  template:
+    metadata:
+      labels:
+        app: sba-server
+    spec:
+      containers:
+        - name: sba-server-container
+          image: baziakad9/sba-server:v1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+              name: ssh
+          securityContext:
+            readOnlyRootFilesystem: true
+            allowPrivilegeEscalation: false
+            privileged: false
+            capabilities:
+              drop:
+                - ALL
+            runAsNonRoot: true
+            runAsUser: 10001
+        - name: cloudsql-proxy
+          image: gcr.io/cloudsql-docker/gce-proxy:1.11
+          command: ["/cloud_sql_proxy",
+                    "-instances=sba-web-228222:us-central1:sba-db=tcp:3306",
+                    "-credential_file=/secrets/cloudsql/credentials.json"]
+          securityContext:
+            runAsUser: 2
+            allowPrivilegeEscalation: false
+          volumeMounts:
+          - name: credentials
+            mountPath: /secrets/cloudsql
+            readOnly: true
+      restartPolicy: Always
+      securityContext:
+        fsGroup: 10001
+        runAsNonRoot: true
+        runAsUser: 10001
+      volumes:
+        - name: credentials
+          secret:
+            secretName: cloudsql-instance-credentials
+            items:
+              - key: sba-web-keys.json
+                path: credentials.json
+      hostNetwork: false

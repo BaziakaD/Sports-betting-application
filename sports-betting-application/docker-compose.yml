@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  mysql:
+    image: mysql:5.7
+    container_name: sba_db_mysql
+#    volumes:
+#      - ./mysql_data:/mysql_data
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=sba_admin
+      - MYSQL_USER=sba-db-admin
+      - MYSQL_DATABASE=sba-db
+      - MYSQL_PASSWORD=sba-password

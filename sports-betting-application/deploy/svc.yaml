@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: sba-loadbalancer
+spec:
+  selector:
+    app: sba-server
+  ports:
+    - protocol: TCP
+      targetPort: 8080
+      port: 80
+      name: http
+  type: LoadBalancer

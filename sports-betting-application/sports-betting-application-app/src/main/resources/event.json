@@ -1,0 +1,24 @@
+{
+  "title": "Dynamo - Shakhtar",
+  "type": "FOOTBALL",
+  "startDate": "2018-12-28 16:20:53",
+  "endDate": "2018-12-28 18:05:53",
+  "bets": [
+    {
+      "description": "Match between Dynamo and Shaktar",
+      "type": "GOAL",
+      "outcomes": [
+        {
+          "value": "1",
+          "outcomeOdds": [
+            {
+              "value": 2,
+              "validFrom": "2018-12-23 16:20:53",
+              "validTo": "2018-12-28 16:20:53"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

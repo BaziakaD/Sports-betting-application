@@ -1,0 +1,411 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="Dmytro_Baziaka (generated)" id="1544551989047-1">
+        <createTable tableName="Bet">
+            <column name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="type" type="VARCHAR(255)"/>
+            <column name="event_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Dmytro_Baziaka (generated)" id="1544551989047-2">
+        <createTable tableName="Outcome">
+            <column name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="value" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="bet_id" type="INT"/>
+            <column name="result_id" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Dmytro_Baziaka (generated)" id="1544551989047-3">
+        <createTable tableName="OutcomeOdd">
+            <column name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="validFrom" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="validTo" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="value" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="outcome_id" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Dmytro_Baziaka (generated)" id="1544551989047-4">
+        <createTable tableName="Player">
+            <column name="accountNumber" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="balance" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="currency" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="dateOfBirth" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="VARCHAR(255)">
+                <constraints primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Dmytro_Baziaka (generated)" id="1544551989047-5">
+        <createTable tableName="Result">
+            <column name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Dmytro_Baziaka (generated)" id="1544551989047-6">
+        <createTable tableName="SportEvent">
+            <column name="DTYPE" type="VARCHAR(31)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="endDate" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="startDate" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="title" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type" type="VARCHAR(8)"/>
+            <column name="result_id" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Dmytro_Baziaka (generated)" id="1544551989047-7">
+        <createTable tableName="User">
+            <column name="email" type="VARCHAR(255)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="enabled" type="BIT(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="version" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Dmytro_Baziaka (generated)" id="1544551989047-8">
+        <createTable tableName="Wager">
+            <column name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="amount" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="currency" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="isProcessed" type="BIT(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="isWin" type="BIT(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="timestamp" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="outcome_odd_id" type="INT"/>
+            <column name="player_id" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Dmytro_Baziaka (generated)" id="1544551989047-9">
+        <createTable tableName="hibernate_sequence">
+            <column name="next_val" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Dmytro_Baziaka (generated)" id="1544551989047-10">
+        <createIndex indexName="FK3n5ebwe9uuof27dy2tr7ux4h3" tableName="Wager">
+            <column name="player_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Dmytro_Baziaka (generated)" id="1544551989047-11">
+        <createIndex indexName="FK57w6lyoyvu4r4bnlios7efu8y" tableName="SportEvent">
+            <column name="result_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Dmytro_Baziaka (generated)" id="1544551989047-12">
+        <createIndex indexName="FK75o1tsc4vkp643g2bdr07sc04" tableName="Outcome">
+            <column name="bet_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Dmytro_Baziaka (generated)" id="1544551989047-13">
+        <createIndex indexName="FKfxpww23wtjsseeyql87yv6ei9" tableName="Outcome">
+            <column name="result_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Dmytro_Baziaka (generated)" id="1544551989047-14">
+        <createIndex indexName="FKg5dqocftx8fwgj5qawmw3bkm5" tableName="Bet">
+            <column name="event_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Dmytro_Baziaka (generated)" id="1544551989047-15">
+        <createIndex indexName="FKp3oa5ifscql9kgmplqbvqyxqq" tableName="OutcomeOdd">
+            <column name="outcome_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Dmytro_Baziaka (generated)" id="1544551989047-16">
+        <createIndex indexName="FKt1nqo01d8ywql2ksl27qnddl" tableName="Wager">
+            <column name="outcome_odd_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Dmytro_Baziaka (generated)" id="1544551989047-17">
+        <addForeignKeyConstraint baseColumnNames="player_id" baseTableName="Wager" constraintName="FK3n5ebwe9uuof27dy2tr7ux4h3" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="email" referencedTableName="Player" validate="true"/>
+    </changeSet>
+    <changeSet author="Dmytro_Baziaka (generated)" id="1544551989047-18">
+        <addForeignKeyConstraint baseColumnNames="result_id" baseTableName="SportEvent" constraintName="FK57w6lyoyvu4r4bnlios7efu8y" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="Result" validate="true"/>
+    </changeSet>
+    <changeSet author="Dmytro_Baziaka (generated)" id="1544551989047-19">
+        <addForeignKeyConstraint baseColumnNames="bet_id" baseTableName="Outcome" constraintName="FK75o1tsc4vkp643g2bdr07sc04" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="Bet" validate="true"/>
+    </changeSet>
+    <changeSet author="Dmytro_Baziaka (generated)" id="1544551989047-20">
+        <addForeignKeyConstraint baseColumnNames="result_id" baseTableName="Outcome" constraintName="FKfxpww23wtjsseeyql87yv6ei9" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="Result" validate="true"/>
+    </changeSet>
+    <changeSet author="Dmytro_Baziaka (generated)" id="1544551989047-21">
+        <addForeignKeyConstraint baseColumnNames="event_id" baseTableName="Bet" constraintName="FKg5dqocftx8fwgj5qawmw3bkm5" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="SportEvent" validate="true"/>
+    </changeSet>
+    <changeSet author="Dmytro_Baziaka (generated)" id="1544551989047-22">
+        <addForeignKeyConstraint baseColumnNames="email" baseTableName="Player" constraintName="FKjbdwvxlfmgn44bh07tin9qqv5" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="email" referencedTableName="User" validate="true"/>
+    </changeSet>
+    <changeSet author="Dmytro_Baziaka (generated)" id="1544551989047-23">
+        <addForeignKeyConstraint baseColumnNames="outcome_id" baseTableName="OutcomeOdd" constraintName="FKp3oa5ifscql9kgmplqbvqyxqq" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="Outcome" validate="true"/>
+    </changeSet>
+    <changeSet author="Dmytro_Baziaka (generated)" id="1544551989047-24">
+        <addForeignKeyConstraint baseColumnNames="outcome_odd_id" baseTableName="Wager" constraintName="FKt1nqo01d8ywql2ksl27qnddl" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="OutcomeOdd" validate="true"/>
+    </changeSet>
+    <changeSet author="Dmytro_Baziaka (generated)" id="1544552034773-5">
+        <insert tableName="SportEvent">
+            <column name="DTYPE" value="FootballSportEvent"/>
+            <column name="id" valueNumeric="1"/>
+            <column name="endDate" valueDate="2018-12-11T21:57:54"/>
+            <column name="startDate" valueDate="2018-12-11T20:12:54"/>
+            <column name="title" value="Colombia - Argentina"/>
+            <column name="type" value="FOOTBALL"/>
+            <column name="result_id"/>
+        </insert>
+        <insert tableName="SportEvent">
+            <column name="DTYPE" value="TennisSportEvent"/>
+            <column name="id" valueNumeric="17"/>
+            <column name="endDate" valueDate="2018-12-11T21:12:54"/>
+            <column name="startDate" valueDate="2018-12-11T20:12:54"/>
+            <column name="title" value="Rafael Nadal vs. Alexander Zverev, Indian Wells 4th Round"/>
+            <column name="type" value="TENNIS"/>
+            <column name="result_id"/>
+        </insert>
+    </changeSet>
+    <changeSet author="Dmytro_Baziaka (generated)" id="1544552034773-6">
+        <insert tableName="User">
+            <column name="email" value="email@mail.com"/>
+            <column name="enabled" valueBoolean="true"/>
+            <column name="password" value="$2a$04$1DX6qRacSwxzuURDbCmxQ.ak7XsaWmvufDas4dRvhBpK6vEkuCbqK"/>
+            <column name="version" value="0"/>
+        </insert>
+    </changeSet>
+    <changeSet author="Dmytro_Baziaka (generated)" id="1544552034773-4">
+        <insert tableName="Player">
+            <column name="accountNumber" valueNumeric="9782"/>
+            <column name="balance" valueNumeric="8000.0"/>
+            <column name="currency" value="USD"/>
+            <column name="dateOfBirth" valueDate="1998-01-05"/>
+            <column name="name" value="Dmytro"/>
+            <column name="email" value="email@mail.com"/>
+        </insert>
+    </changeSet>
+    <changeSet author="Dmytro_Baziaka (generated)" id="1544552034773-1">
+        <insert tableName="Bet">
+            <column name="id" valueNumeric="2"/>
+            <column name="description" value="Match between Colombia and Argentina"/>
+            <column name="type" value="WINNER"/>
+            <column name="event_id" valueNumeric="1"/>
+        </insert>
+        <insert tableName="Bet">
+            <column name="id" valueNumeric="10"/>
+            <column name="description" value="Match between Colombia and Argentina"/>
+            <column name="type" value="GOAL"/>
+            <column name="event_id" valueNumeric="1"/>
+        </insert>
+        <insert tableName="Bet">
+            <column name="id" valueNumeric="18"/>
+            <column name="description" value="Rafael Nadal vs. Alexander Zverev"/>
+            <column name="type" value="WINNER"/>
+            <column name="event_id" valueNumeric="17"/>
+        </insert>
+    </changeSet>
+    <changeSet author="Dmytro_Baziaka (generated)" id="1544552034773-2">
+        <insert tableName="Outcome">
+            <column name="id" valueNumeric="3"/>
+            <column name="value" value="Colombia"/>
+            <column name="bet_id" valueNumeric="2"/>
+            <column name="result_id"/>
+        </insert>
+        <insert tableName="Outcome">
+            <column name="id" valueNumeric="6"/>
+            <column name="value" value="Argentina"/>
+            <column name="bet_id" valueNumeric="2"/>
+            <column name="result_id"/>
+        </insert>
+        <insert tableName="Outcome">
+            <column name="id" valueNumeric="8"/>
+            <column name="value" value="Draw"/>
+            <column name="bet_id" valueNumeric="2"/>
+            <column name="result_id"/>
+        </insert>
+        <insert tableName="Outcome">
+            <column name="id" valueNumeric="11"/>
+            <column name="value" value="0"/>
+            <column name="bet_id" valueNumeric="10"/>
+            <column name="result_id"/>
+        </insert>
+        <insert tableName="Outcome">
+            <column name="id" valueNumeric="13"/>
+            <column name="value" value="1"/>
+            <column name="bet_id" valueNumeric="10"/>
+            <column name="result_id"/>
+        </insert>
+        <insert tableName="Outcome">
+            <column name="id" valueNumeric="15"/>
+            <column name="value" value="2"/>
+            <column name="bet_id" valueNumeric="10"/>
+            <column name="result_id"/>
+        </insert>
+        <insert tableName="Outcome">
+            <column name="id" valueNumeric="19"/>
+            <column name="value" value="Rafael Nadal"/>
+            <column name="bet_id" valueNumeric="18"/>
+            <column name="result_id"/>
+        </insert>
+        <insert tableName="Outcome">
+            <column name="id" valueNumeric="21"/>
+            <column name="value" value="Alexander Zverev"/>
+            <column name="bet_id" valueNumeric="18"/>
+            <column name="result_id"/>
+        </insert>
+    </changeSet>
+    <changeSet author="Dmytro_Baziaka (generated)" id="1544552034773-3">
+        <insert tableName="OutcomeOdd">
+            <column name="id" valueNumeric="4"/>
+            <column name="validFrom" valueDate="2018-09-01T00:00:00"/>
+            <column name="validTo" valueDate="2018-09-12T00:00:00"/>
+            <column name="value" valueNumeric="2.0"/>
+            <column name="outcome_id" valueNumeric="3"/>
+        </insert>
+        <insert tableName="OutcomeOdd">
+            <column name="id" valueNumeric="5"/>
+            <column name="validFrom" valueDate="2018-12-11T20:12:54"/>
+            <column name="validTo" valueDate="2018-12-11T21:57:54"/>
+            <column name="value" valueNumeric="1.5"/>
+            <column name="outcome_id" valueNumeric="3"/>
+        </insert>
+        <insert tableName="OutcomeOdd">
+            <column name="id" valueNumeric="7"/>
+            <column name="validFrom" valueDate="2018-12-11T20:12:54"/>
+            <column name="validTo" valueDate="2018-12-11T21:57:54"/>
+            <column name="value" valueNumeric="1.6"/>
+            <column name="outcome_id" valueNumeric="6"/>
+        </insert>
+        <insert tableName="OutcomeOdd">
+            <column name="id" valueNumeric="9"/>
+            <column name="validFrom" valueDate="2018-12-11T20:12:54"/>
+            <column name="validTo" valueDate="2018-12-11T21:57:54"/>
+            <column name="value" valueNumeric="3.0"/>
+            <column name="outcome_id" valueNumeric="8"/>
+        </insert>
+        <insert tableName="OutcomeOdd">
+            <column name="id" valueNumeric="12"/>
+            <column name="validFrom" valueDate="2018-12-11T20:12:54"/>
+            <column name="validTo" valueDate="2018-12-11T21:57:54"/>
+            <column name="value" valueNumeric="3.0"/>
+            <column name="outcome_id" valueNumeric="11"/>
+        </insert>
+        <insert tableName="OutcomeOdd">
+            <column name="id" valueNumeric="14"/>
+            <column name="validFrom" valueDate="2018-12-11T20:12:54"/>
+            <column name="validTo" valueDate="2018-12-11T21:57:54"/>
+            <column name="value" valueNumeric="1.5"/>
+            <column name="outcome_id" valueNumeric="13"/>
+        </insert>
+        <insert tableName="OutcomeOdd">
+            <column name="id" valueNumeric="16"/>
+            <column name="validFrom" valueDate="2018-12-11T20:12:54"/>
+            <column name="validTo" valueDate="2018-12-11T21:57:54"/>
+            <column name="value" valueNumeric="1.1"/>
+            <column name="outcome_id" valueNumeric="15"/>
+        </insert>
+        <insert tableName="OutcomeOdd">
+            <column name="id" valueNumeric="20"/>
+            <column name="validFrom" valueDate="2018-12-11T20:12:54"/>
+            <column name="validTo" valueDate="2018-12-11T21:12:54"/>
+            <column name="value" valueNumeric="1.01"/>
+            <column name="outcome_id" valueNumeric="19"/>
+        </insert>
+        <insert tableName="OutcomeOdd">
+            <column name="id" valueNumeric="22"/>
+            <column name="validFrom" valueDate="2018-12-11T20:12:54"/>
+            <column name="validTo" valueDate="2018-12-11T21:12:54"/>
+            <column name="value" valueNumeric="1.7"/>
+            <column name="outcome_id" valueNumeric="21"/>
+        </insert>
+    </changeSet>
+    <changeSet author="Dmytro_Baziaka (generated)" id="1544552034773-7">
+        <insert tableName="Wager">
+            <column name="id" valueNumeric="23"/>
+            <column name="amount" valueNumeric="1000.0"/>
+            <column name="currency" value="USD"/>
+            <column name="isProcessed" valueBoolean="true"/>
+            <column name="isWin" valueBoolean="false"/>
+            <column name="timestamp" valueDate="2018-12-11T20:12:54"/>
+            <column name="outcome_odd_id" valueNumeric="5"/>
+            <column name="player_id" value="email@mail.com"/>
+        </insert>
+        <insert tableName="Wager">
+            <column name="id" valueNumeric="24"/>
+            <column name="amount" valueNumeric="1000.0"/>
+            <column name="currency" value="USD"/>
+            <column name="isProcessed" valueBoolean="false"/>
+            <column name="isWin" valueBoolean="false"/>
+            <column name="timestamp" valueDate="2018-12-11T20:12:54"/>
+            <column name="outcome_odd_id" valueNumeric="20"/>
+            <column name="player_id" value="email@mail.com"/>
+        </insert>
+    </changeSet>
+    <changeSet author="Dmytro_Baziaka (generated)" id="1544552034773-8">
+        <insert tableName="hibernate_sequence">
+            <column name="next_val" valueNumeric="25"/>
+        </insert>
+        <insert tableName="hibernate_sequence">
+            <column name="next_val" valueNumeric="25"/>
+        </insert>
+        <insert tableName="hibernate_sequence">
+            <column name="next_val" valueNumeric="25"/>
+        </insert>
+        <insert tableName="hibernate_sequence">
+            <column name="next_val" valueNumeric="25"/>
+        </insert>
+        <insert tableName="hibernate_sequence">
+            <column name="next_val" valueNumeric="25"/>
+        </insert>
+        <insert tableName="hibernate_sequence">
+            <column name="next_val" valueNumeric="25"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>
