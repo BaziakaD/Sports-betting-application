@@ -9,11 +9,21 @@ Techonologies:
   - Log4j2
   - Jetty
   - Docker 
-  - Google Cloud Platform (Google Kubernetes Engine & Cloud SQL) 
+  - Google Cloud Platform (Google Kubernetes Engine & Cloud SQL)
+  
+Before you get started
+--------
+This project targets Java 11. Make sure you have done following:
+- Install OpenJDK 11
+- Update your IDE. Check if it supports Java 11 (or at least Java 10)
+- Update your Maven installation
+- Make sure to set target bytecode version, project SDK and supported language level in your IDE to 
+Java 11
+- Deploy MySQL server or MySQL proxy to the localhost:3306
+
 
 # Users
-
-  - Admin (email@mail.com, 12345678)
+  - User (email@mail.com, 12345678)
 
 ### Installation
 ```sh
