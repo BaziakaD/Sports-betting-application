@@ -16,19 +16,15 @@ Techonologies:
   - Admin (email@mail.com, 12345678)
 
 ### Installation
-Install the dependencies and devDependencies and start the server.
-
 ```sh
-$ cd sports-betting-application\
 $ mvn clean package
 $ java -jar sports-betting-application-app\target\sports-betting-application-jar-with-dependencies.jar
 
 ```
 ### Docker
-You can use docker-compose for create mysql container.
+You can use docker-compose if you want to use mysql container.
 
 ```sh
-$ cd Movie-Theater
 $ docker-compose up -d
 ```
 
@@ -36,6 +32,6 @@ $ docker-compose up -d
 You can k8s specs to deploy to the k8s cluster
 
 ```sh
-$ cd sports-betting-application\deploy
+$ cd deploy\
 $ kubectl apply -f svc.yaml deploy.yaml
 ```
