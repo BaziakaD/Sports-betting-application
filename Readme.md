@@ -1,13 +1,26 @@
 # Sports betting application
 
-Developed with Spring MVC, Spring Security and Spring Data.
+Description
+--------
+User could create wagers. If user wins, player balance will be increased.
+Every  wager consist of the list of the outcomes. Outcome represent one of the wager possible result. And every outcome consist of the list of the outcome odd(wager coefficient).
+
+Users work with application by using GUI interface.
+
+If you, like an admin, want to manipulate with data in database you can use REST API. 
+
+REST API provide next functionality: 
+- Create event with outcome and odds
+- Get list of all events in short form
+- Get detailed information about event by event id.
+- Save wager result and update player balance(if player wins)
+- Get information about player by player id.
 
 Techonologies:
+--------
   - Spring Framework( IoC, Data, MVC, Security)
   - Hibernate
   - MySQL
-  - Log4j2
-  - Jetty
   - Docker 
   - Google Cloud Platform (Google Kubernetes Engine & Cloud SQL)
   
@@ -22,6 +35,7 @@ Java 11
 - Deploy MySQL server or MySQL proxy to the localhost:3306
 
 ### REST API request collections
+You can import collection of the API endpoint specifications to the Postman from the next link:
 ```
 https://www.getpostman.com/collections/df21fa2b28d0e534456d
 ```
